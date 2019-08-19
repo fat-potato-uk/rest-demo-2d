@@ -36,7 +36,7 @@ class EmployeeManagerTest {
     @Test
     void getAllTest() {
         var employees = List.of(bob, sam);
-        when(employeeManager.getAll()).thenReturn(employees);
+        when(employeeRepository.findAll()).thenReturn(employees);
         assertThat(employeeManager.getAll(), contains(bob, sam));
     }
 
