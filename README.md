@@ -13,7 +13,7 @@ to the poor unsuspecting developer_)
 
 We can do this by updating the `pom.xml` as follows:
 
-```
+```xml
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-test</artifactId>
@@ -38,14 +38,14 @@ errors as described) and adds in the newer `JUnit`.
 You'll need to make some changes now to get your project to work as before. There has been a change
 in some of the annotations, so now your tests will need to look like this:
 
-```
+```java
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 class EmployeeControllerTest { ... }
 ```
 and
-```
+```java
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 class EmployeeRepositoryTest { ... }
@@ -67,7 +67,7 @@ with this!
 
 So, lets change a few things!
 
-```
+```java
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -92,7 +92,7 @@ not be necessary).
 
 Now we need to change our tests to behave under these mocks. Lets try the first one.
 
-```
+```java
 @Test
 void getAllEmployeesTest() throws Exception {
     when(employeeManager.getAll()).thenReturn(List.of(new Employee("Bilbo Baggins", "burglar"), 
@@ -117,7 +117,7 @@ issues.
 
 For tests like our delete test, we can use a `verify` to check the correct operation is performed:
 
-```
+```java
 @Test
 void deleteEmployee() throws Exception {
     this.mockMvc.perform(delete("/employees/123")).andExpect(status().isOk());
@@ -146,7 +146,7 @@ and database interactions.
 
 For this, we are going to use the `MockitoExtension` and avoid any Spring context wiring:
 
-```
+```xml
 <dependency>
     <groupId>org.mockito</groupId>
     <artifactId>mockito-junit-jupiter</artifactId>
@@ -157,7 +157,7 @@ For this, we are going to use the `MockitoExtension` and avoid any Spring contex
 
 With this added, we can use the following to get us started:
 
-```
+```java
 package demo.managers;
 
 import demo.models.Employee;
@@ -206,7 +206,7 @@ As an exercise for the reader, see if you can get complete coverage of this clas
 
 _Hint: You may find this snippet handy..._
 
-```
+```java
 // This will always return whatever we try to save as the repository does
 when(employeeRepository.save(any())).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
 ```
