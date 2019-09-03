@@ -62,7 +62,7 @@ It is for this reason why many people reserve this mechanic of testing for their
 In fact, the `mockMvc` mechanic is technically part of the Spring _integration_ testing framework, for
 this very reason.
 
-I think we can still use it to a lesser extend to get some unit coverage however, and mocking will help
+I think we can still use it to a lesser extent to get some unit coverage however, and mocking will help
 with this!
 
 So, lets change a few things!
