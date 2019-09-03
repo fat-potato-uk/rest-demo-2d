@@ -83,6 +83,7 @@ class EmployeeControllerTest {
     private MockMvc mockMvc;
     
     ...
+}
 ``` 
 
 We have wired in a mock `EmployeeManager`. This will be injected at any point in which we `@Autowire`
