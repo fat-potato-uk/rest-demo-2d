@@ -56,7 +56,6 @@
         </dependency>
     </dependencies>
 
-
     <properties>
         <java.version>13</java.version>
         <spring.boot.version>2.2.5.RELEASE</spring.boot.version>
