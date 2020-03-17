@@ -10,7 +10,6 @@ helpful and importing the wrong libraries for us! (_Side note, this is something
 whereby the wrong annotations with the same name are ported in, presenting vague unhelpful errors
 to the poor unsuspecting developer_)
 
-
 We can do this by updating the `pom.xml` as follows:
 
 ```xml
@@ -25,15 +24,12 @@ We can do this by updating the `pom.xml` as follows:
         </exclusion>
     </exclusions>
 </dependency>
-<dependency>
-    <groupId>org.junit.jupiter</groupId>
-    <artifactId>junit-jupiter-api</artifactId>
-    <version>5.3.2</version>
-    <scope>test</scope>
-</dependency>
 ```
-This negates the `JUnit4` dependencies in the `spring-boot-starter-test` (avoiding accidental 
-errors as described) and adds in the newer `JUnit`.
+
+This negates the `JUnit4` dependencies in the `spring-boot-starter-test` (avoiding accidental errors as described).
+
+_Note: This should no longer be required as of Spring Boot 2.2.0, as JUnit5 has been enabled as the default. It
+still might be sensible to disable JUnit4 however as IDE's may behave unpredictably with it in the class path_ 
 
 You'll need to make some changes now to get your project to work as before. There has been a change
 in some of the annotations, so now your tests will need to look like this:
@@ -145,16 +141,18 @@ Looks like something we best rectify!
 There are arguments here for either using an in-memory DB test. For now however, we are going to mock
 and database interactions.
 
-For this, we are going to use the `MockitoExtension` and avoid any Spring context wiring:
+For this, we are going to use the `MockitoExtension` and avoid any Spring context wiring. Pre Spring Boot 2.2.0, we would
+need this:
 
 ```xml
 <dependency>
     <groupId>org.mockito</groupId>
     <artifactId>mockito-junit-jupiter</artifactId>
-    <version>2.23.0</version>
     <scope>test</scope>
 </dependency>
 ```
+
+But newer versions include this by default.
 
 With this added, we can use the following to get us started:
 
