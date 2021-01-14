@@ -22,6 +22,10 @@ We can do this by updating the `pom.xml` as follows:
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </exclusion>
+        <exclusion>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+        </exclusion>
     </exclusions>
 </dependency>
 ```
